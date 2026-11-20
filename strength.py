@@ -41,5 +41,3 @@ def check_password_strength(password):
     if len(missing) == 0:
         print("Your password is strong!")
 
-check_password_strength("")
-
