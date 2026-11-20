@@ -1,3 +1,5 @@
+from file_manager import save_to_log as sl
+
 def check_password_strength(password):      
     has_lower = False
     has_upper = False
@@ -33,6 +35,7 @@ def check_password_strength(password):
          
 
     score = 5 - len(missing)
+    sl(f"Strength check: {score}/5 ({strength[score]})")
     print(f"Score: {score}/5")
     print(f"Strength Level: {strength[score]}")
     for i in missing:

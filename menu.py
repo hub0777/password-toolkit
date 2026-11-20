@@ -1,6 +1,7 @@
 from utils import show_menu as sm
 from strength import check_password_strength as cs
 from breach import check_breach as cb
+from file_manager import save_to_log as sl, view_log as vl
 
 def run_menu():
     """Run the menu loop until the user types exit."""
@@ -32,7 +33,8 @@ def run_menu():
             except ValueError as e:
                 print(f"Invalid input: {e}")
         elif choice == "5":
-            print("Log viewer coming soon")
+            sl("User viewed the log.")
+            vl()
         else:
             print("Invalid option, try again.")
 

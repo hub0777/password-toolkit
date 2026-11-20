@@ -1,5 +1,6 @@
 import hashlib
 import requests
+from file_manager import save_to_log as sl
 
 
 def check_breach(password):
@@ -29,6 +30,7 @@ def check_breach(password):
         if line_suffix == suffix:
             print(f"WARNING: This password has been seen in {count} known breaches!") 
             print("Do not use it AND change it IMMEDIATELY.")
+            sl("User checked a password for breaches.")
             return
-
+    sl("Breach check: not found")
     print("Good news: this password was not found in any known breach.")
