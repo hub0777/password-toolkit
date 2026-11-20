@@ -1,5 +1,6 @@
 from utils import show_menu as sm
 from strength import check_password_strength as cs
+from breach import check_breach as cb
 
 def run_menu():
     """Run the menu loop until the user types exit."""
@@ -23,7 +24,13 @@ def run_menu():
         elif choice == "3":
             print("Encoder coming soon")
         elif choice == "4":
-            print("Breach checker coming soon")
+            password = input("Enter a password to check for breaches: ")
+            try:
+                if password == "":
+                    raise ValueError("Password cannot be empty.")
+                cb(password)
+            except ValueError as e:
+                print(f"Invalid input: {e}")
         elif choice == "5":
             print("Log viewer coming soon")
         else:
