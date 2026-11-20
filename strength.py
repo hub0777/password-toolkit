@@ -1,6 +1,7 @@
 from file_manager import save_to_log as sl
 
 def check_password_strength(password):      
+    """Score a password from 0 to 5 and list what it's missing."""
     has_lower = False
     has_upper = False
     has_digit = False
