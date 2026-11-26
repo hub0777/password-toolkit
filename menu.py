@@ -1,8 +1,35 @@
-import display 
+import display
 from strength import check_password_strength as cs
 from breach import check_breach as cb
 from file_manager import save_to_log as sl, view_log as vl
 from generator import generate_password as gp
+from cipher import CaesarCipher
+
+
+def handle_cipher():
+    """Ask the user to encode or decode, then run the Caesar cipher."""
+    mode = input("Type 'e' to encode or 'd' to decode: ").strip().lower()
+    try:
+        if mode != "e" and mode != "d":
+            raise ValueError("Choose 'e' or 'd'.")
+        text = input("Enter the text: ")
+        if text == "":
+            raise ValueError("Text cannot be empty.")
+        shift = int(input("Enter a shift between 1 and 25: "))
+        if shift < 1 or shift > 25:
+            raise ValueError("Shift must be between 1 and 25.")
+
+        cipher = CaesarCipher(shift)
+        if mode == "e":
+            result = cipher.encode(text)
+            sl("Encoded a message with " + cipher.describe())
+        else:
+            result = cipher.decode(text)
+            sl("Decoded a message with " + cipher.describe())
+        display.print_success("Result: " + result)
+    except ValueError as e:
+        display.print_error(f"Invalid input: {e}")
+
 
 def run_menu():
     """Run the menu loop until the user types exit."""
@@ -16,7 +43,7 @@ def run_menu():
             break
         elif choice == "1":
             password = input("Enter a password to check its strength: ")
-            try:  
+            try:
                 if password == "":
                     raise ValueError("Password cannot be empty.")  # thanks w3schools
                 cs(password)
@@ -31,9 +58,8 @@ def run_menu():
                 sl(f"Generated a password of {length} characters")
             except ValueError as e:
                 display.print_error(f"Invalid length: {e}")
-            
         elif choice == "3":
-            display.print_warning("Encoder coming soon")
+            handle_cipher()
         elif choice == "4":
             password = input("Enter a password to check for breaches: ")
             try:
@@ -47,4 +73,3 @@ def run_menu():
             vl()
         else:
             display.print_error("Invalid option, try again.")
-

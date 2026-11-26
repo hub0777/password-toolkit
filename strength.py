@@ -1,4 +1,5 @@
 from file_manager import save_to_log as sl
+import display
 
 def check_password_strength(password):      
     """Score a password from 0 to 5 and list what it's missing."""
@@ -37,11 +38,11 @@ def check_password_strength(password):
 
     score = 5 - len(missing)
     sl(f"Strength check: {score}/5 ({strength[score]})")
-    print(f"Score: {score}/5")
+    display.print_score(score)
     print(f"Strength Level: {strength[score]}")
     for i in missing:
-        print(i)
+        display.print_warning(i)
 
     if len(missing) == 0:
-        print("Your password is strong!")
+        display.print_success("Your password is strong!")
 
