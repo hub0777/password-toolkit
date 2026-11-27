@@ -4,6 +4,7 @@ from breach import check_breach as cb
 from file_manager import save_to_log as sl, view_log as vl
 from generator import generate_password as gp
 from cipher import CaesarCipher
+from validators import is_whole_number
 
 
 def handle_cipher():
@@ -15,7 +16,10 @@ def handle_cipher():
         text = input("Enter the text: ")
         if text == "":
             raise ValueError("Text cannot be empty.")
-        shift = int(input("Enter a shift between 1 and 25: "))
+        shift_text = input("Enter a shift between 1 and 25: ")
+        if not is_whole_number(shift_text):
+            raise ValueError("Please type a whole number, like 3.")
+        shift = int(shift_text)
         if shift < 1 or shift > 25:
             raise ValueError("Shift must be between 1 and 25.")
 
@@ -51,7 +55,10 @@ def run_menu():
                 display.print_error(f"Invalid input: {e}")
         elif choice == "2":
             try:
-                length = int(input("Enter a password length to generate: "))
+                length_text = input("Enter a password length to generate: ")
+                if not is_whole_number(length_text):
+                    raise ValueError("Please type a whole number, like 12.")
+                length = int(length_text)
                 if length < 8 or length > 64:
                     raise ValueError("Length must be between 8 and 64.")
                 gp(length)
