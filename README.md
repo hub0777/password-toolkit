@@ -13,7 +13,7 @@ All in one password tool app so that the user can check their password strength 
 - **Who it's for:** anyone who wants to check or improve their passwords from the terminal
 
 ## Screenshots
-Coloured terminal menu with banner (screenshots/GIF to be added).
+![Demo](images/demo.gif)
 
 ## Installation
 ```bash
@@ -44,10 +44,11 @@ Run `python main.py`, type a number from 1 to 5 to pick an option, and type `exi
 - **Error handling**: `try/except` with `raise ValueError` for invalid input, `RequestException` for API errors, `FileNotFoundError` for the log, and **regex validation** of number inputs with `re.fullmatch` in `validators.py` (+1)
 - **Decomposition principles**: no code outside functions, more than 10 functions, all files under 300 lines and functions under 80 lines, docstrings on every function (+1)
 - **In-app interaction**: everything happens inside the app without restarting (+1)
+- **Demo GIF**: shows cloning, installing and every menu option running (+2)
 - **On-time submission** (+2)
 - Data structures used: dictionary (strength ratings), list of tuples (strength checks, menu options), set (skipped characters), lists
 
-**Approximate Total: 22/30 points**
+**Approximate Total: 24/30 points**
 
 ## TODO
 ### Incomplete Planned Features
@@ -56,7 +57,6 @@ Run `python main.py`, type a number from 1 to 5 to pick an option, and type `exi
 - [ ] AI explanation of strength results (only the score and tips would be sent, never the password)
 - [ ] pytest tests for the strength checker, generator and cipher
 - [ ] SQLite database for user profiles and history
-- [ ] GIF of the app running
 - [ ] Web version on GitHub Pages
 
 ## Project Structure
